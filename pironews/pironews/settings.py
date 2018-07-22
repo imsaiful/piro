@@ -125,4 +125,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "..","static")
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "..","media")
+MEDIA_URL = '/media/'
 #STATIC_ROOT = "/var/www/http://ec2-18-222-186-240.us-east-2.compute.amazonaws.com/static/"

@@ -5,6 +5,6 @@ from .models import HeadLine
 def index(request):
     queryset = HeadLine.objects.all()
     context = {
-        "post": queryset
+        "posts": queryset
     }
     return render(request, 'feed/index.html', context)
