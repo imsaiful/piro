@@ -82,8 +82,8 @@ DATABASES = {
         'NAME': 'piro',
         'USER': 'piro',
         'PASSWORD': 'research123',
-        'HOST': 'localhost',
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': 'pironews.ceubekalawiz.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
 
