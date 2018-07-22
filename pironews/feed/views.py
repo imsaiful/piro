@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from .models import HeadLine
 
 
 def index(request):
-    return render(request, 'feed/index.html', {})
+    queryset = HeadLine.objects.all()
+    context = {
+        "post": queryset
+    }
+    return render(request, 'feed/index.html', context)
