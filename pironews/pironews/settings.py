@@ -81,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'piro',
         'USER': 'piro',
-        'PASSWORD': 'research123',
-        'HOST': 'pironews.ceubekalawiz.us-east-2.rds.amazonaws.com',
-        'PORT': '5432',                      # Set to empty string for default.
+        'PASSWORD':'research123',
+        'HOST': 'localhost',
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
