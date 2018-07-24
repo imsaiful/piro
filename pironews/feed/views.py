@@ -31,10 +31,9 @@ def dbtimesofindia(request):
         except:
             p = 0
     i = 1
+    #add to the db
     for x in title:
-        print(x)
-        post=HeadLine(title=x,created_date=timezone.now(),published_date=timezone.now())
-        print(post.title)
+        post=HeadLine(title=x,created_date=timezone.now(), published_date=timezone.now())
         post.save()
 
     return HttpResponse("<h1>Hello World</h1>")
