@@ -31,5 +31,26 @@ def dbtimesofindia(request):
         print("Error")
 
 
+<<<<<<< HEAD
+    toi_article = newspaper.build(url, language="en", memoize_articles=False)  # en for English
+    at = []
+    title = []
+    for article in toi_article.articles[:50]:
+        at.append(article)
+    for x in at:
+        try:
+            x.download()
+            x.parse()
+            if (x.text != ""):
+                title.append(x.title)
+        except:
+            p = 0
+    i = 1
+    #add to the db
+    for x in title:
+        post=HeadLine(title=x,created_date=timezone.now(), published_date=timezone.now())
+        post.save()
+=======
+>>>>>>> d0c368a212539e43345503175f4485771b5cb7e8
 
     return HttpResponse("<h1>Hello World</h1>")
