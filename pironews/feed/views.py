@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import HeadLine
-from newspaper import Article
-import newspaper
+import requests
+from bs4 import BeautifulSoup
 from django.utils import timezone
 from django.http import HttpResponse
 
@@ -14,26 +14,22 @@ def index(request):
 
 
 def dbtimesofindia(request):
-    print('in script')
-    url = 'https://timesofindia.indiatimes.com/'
+    url = 'https://aajtak.intoday.in/'
+    resp = requests.get(url)
+    if resp.status_code == 200:
+        soup = BeautifulSoup(resp.text, 'html.parser')
+        for i in soup.find_all('a'):
+            y = i.get('title')
+            try:
+                if len(y) > 40:
+                    post = HeadLine(title=y, created_date=timezone.now(), published_date=timezone.now())
+                    post.save()
 
-    toi_article = newspaper.build(url, language="en", memoize_articles=False)  # en for English
-    at = []
-    title = []
-    for article in toi_article.articles[:50]:
-        at.append(article)
-    for x in at:
-        try:
-            x.download()
-            x.parse()
-            if (x.text != ""):
-                title.append(x.title)
-        except:
-            p = 0
-    i = 1
-    #add to the db
-    for x in title:
-        post=HeadLine(title=x,created_date=timezone.now(),published_date=timezone.now())
-        post.save()
+            except:
+                pass
+    else:
+        print("Error")
+
+
 
     return HttpResponse("<h1>Hello World</h1>")
