@@ -14,7 +14,7 @@ def index(request):
 
 
 def dbtimesofindia(request):
-    url = 'https://aajtak.intoday.in/'
+    url = 'https://www.indiatoday.in/'
     resp = requests.get(url)
     if resp.status_code == 200:
         soup = BeautifulSoup(resp.text, 'html.parser')
