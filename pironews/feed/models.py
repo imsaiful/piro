@@ -4,7 +4,6 @@ from django.utils import timezone
 
 class HeadLine(models.Model):
     title = models.CharField(max_length=600)
-    image = models.FileField(default="image of post")
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(

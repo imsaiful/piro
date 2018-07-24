@@ -26,7 +26,7 @@ SECRET_KEY = 'x72drsyv=*hor6-!uq62pbaqr0(e_cg_%2)hr(qo0^eu7!*5z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-18-222-186-240.us-east-2.compute.amazonaws.com','127.0.0.1']
+ALLOWED_HOSTS = ['ec2-18-222-186-240.us-east-2.compute.amazonaws.com','127.0.0.1','localhost']
 
 
 
@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'piro',
         'PASSWORD':'research123',
         'HOST': 'localhost',
-        'PORT': '',                      # Set to empty string for default.
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
 
