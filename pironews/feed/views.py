@@ -30,5 +30,3 @@ def dbtimesofindia(request):
     else:
         print("Error")
 
-
-

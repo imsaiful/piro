@@ -26,7 +26,8 @@ SECRET_KEY = 'x72drsyv=*hor6-!uq62pbaqr0(e_cg_%2)hr(qo0^eu7!*5z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-18-222-186-240.us-east-2.compute.amazonaws.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['ec2-18-218-34-251.us-east-2.compute.amazonaws.com','127.0.0.1','localhost']
+
 
 
 
