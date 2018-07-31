@@ -13,22 +13,30 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def index(request):
     republic_list = Republicdb.objects.all()
-    Indiatvq = Indiatvdb.objects.all()
-    ndtvq = NDTVdb.objects.all()
-    paginator = Paginator(republic_list, 25)  # Show 25 contacts per page
+    Indiatv_list = Indiatvdb.objects.all()
+    ndtv_list = NDTVdb.objects.all()
+    republic_paginator = Paginator(ndtv_list, 5)
+    Indiatv_paginator = Paginator(republic_list, 5)  # Show 25 contacts per page
+    ndtv__paginator = Paginator(Indiatv_list , 5)
     page = request.GET.get('page')
     try:
-        republic_set = paginator.page(page)
+        republic_set = republic_paginator.page(page)
+        Indiatv_set =  Indiatv_paginator.page(page)
+        ndtv_set = ndtv__paginator.page(page)
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
-        republic_set = paginator.page(1)
+        republic_set = republic_paginator.page(1)
+        Indiatv_set = republic_paginator.page(1)
+        ndtv_set = republic_paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
-        republic_set = paginator.page(paginator.num_pages)
+        republic_set = republic_paginator.page(republic_paginator.num_pages)
+        Indiatv_set =Indiatv_paginator .page(republic_paginator.num_pages)
+        ndtv_set = ndtv__paginator.page(republic_paginator.num_pages)
     context = {
         "republic_posts": republic_set,
-        "indiatv_posts": Indiatvq,
-        "ndtv_posts": ndtvq,
+        "indiatv_posts": Indiatv_set,
+        "ndtv_posts": ndtv_set,
     }
     return render(request, 'feed/index.html', context)
 

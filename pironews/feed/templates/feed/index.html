@@ -14,6 +14,7 @@
             font-weight: 700;
             float: left;
         }
+        body { padding-top: 70px; }
     </style>
 </head>
 <body bgcolor="#E6E6FA">
@@ -54,6 +55,21 @@
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                     </div>
                 {% endfor %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if republic_posts.has_previous %}
+                        <a href="?page={{ republic_posts.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ republic_posts.number }} of {{ republic_posts.paginator.num_pages }}.
+                    </span>
+
+                    {% if republic_posts.has_next %}
+                        <a href="?page={{ republic_posts.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <h1><b>Hindustan Times</b></h1>
@@ -63,15 +79,47 @@
                         <h6 style="color:red;">{{ post.created_date}}</h6>
                          </div>
                 {% endfor %}
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if indiatv_posts.has_previous %}
+                            <a href="?page={{ indiatv_posts.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ indiatv_posts.number }} of {{ indiatv_posts.paginator.num_pages }}.
+                        </span>
+
+                        {% if indiatv_posts.has_next %}
+                            <a href="?page={{ indiatv_posts.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+
         </div>
         <div class="col-md-4">
             <h1><b>NDTV </b></h1>
                 {% for post in ndtv_posts %}
                     <div class="thumbnail">
-                        <h5><b><a href="{{post.href}}">{{  post.title}}</a></b></h5>
+                        <h5><b><a href="{{post.href}}">{{ post.title }}</a></b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                          </div>
                 {% endfor %}
+                <div class="pagination">
+                <span class="step-links">
+                    {% if ndtv_posts.has_previous %}
+                        <a href="?page={{ ndtv_posts.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ ndtv_posts.number }} of {{ ndtv_posts.paginator.num_pages }}.
+                    </span>
+
+                    {% if ndtv_posts.has_next %}
+                        <a href="?page={{ ndtv_posts.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+
         </div>
     </div>
 
