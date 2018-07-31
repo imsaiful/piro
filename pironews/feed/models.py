@@ -2,14 +2,31 @@ from django.db import models
 from django.utils import timezone
 
 
-class HeadLine(models.Model):
+class Republicdb(models.Model):
     title = models.CharField(max_length=600)
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
+    href = models.CharField(max_length=600, default="2")
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+    created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
+
+
+class Indiatvdb(models.Model):
+    title = models.CharField(max_length=600)
+    href = models.CharField(max_length=600,default="2")
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+
+class NDTVdb(models.Model):
+    title = models.CharField(max_length=600)
+    href = models.CharField(max_length=600, default="2")
+    created_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+

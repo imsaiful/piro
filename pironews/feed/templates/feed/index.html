@@ -38,22 +38,32 @@
 </nav>
     <div class="row">
 
-        <div class="col-md-3">
-
+        <div class="col-md-4">
+            <h1><b>Republic TV</b></h1>
+            {% for post in republic_posts %}
+                <div class="thumbnail">
+                    <h5><b>{{  post.title}}</b></h5>
+                        <h6 style="color:red;">{{ post.created_date }}</h6>
+                    </div>
+                {% endfor %}
         </div>
-        <div class="col-md-6">
-            <h1>Waah <b>Modi Ji</b> Waah!</h1>
-                {% for post in posts %}
+        <div class="col-md-4">
+            <h1><b>India TV</b></h1>
+                {% for post in indiatv_posts %}
                     <div class="thumbnail">
-                        {% if post.image %}
-                            <img src='{{ post.image.url }}' class='img-responsive' height="300" width="300"/>
-                        {% endif %}
                         <h5><b>{{  post.title}}</b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                          </div>
                 {% endfor %}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <h1><b>Time of India </b></h1>
+                {% for post in ndtv_posts %}
+                    <div class="thumbnail">
+                        <h5><b>{{  post.title}}</b></h5>
+                        <h6 style="color:red;">{{ post.created_date }}</h6>
+                         </div>
+                {% endfor %}
         </div>
     </div>
 </div>
