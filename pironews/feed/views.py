@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from .models import Republicdb, Indiatvdb, NDTVdb
-import requests
 from django.utils import timezone
 from django.http import HttpResponse
+import requests
 from bs4 import BeautifulSoup
+import dateparser
+from datetime import datetime, timedelta
+from .models import NDTVdb
+from django.utils import timezone
 
 def index(request):
     republicq = Republicdb.objects.all()
@@ -18,55 +22,107 @@ def index(request):
 
 
 def republic(request):
-    print("Republic")
-    url = 'https://www.republicworld.com/'
-    resp = requests.get(url)
-    list=[]
+    url = 'https://www.republicworld.com/india-news'
+    print("Waiting for response")
+    try:
+        resp = requests.get(url)
+    except:
+        print("Error")
+    print(resp)
     soup = BeautifulSoup(resp.text, 'html.parser')
+    d1 = []
+    href = []
+    date = []
+    d = datetime.now() - timedelta(1)
     for x in soup.find_all('a'):
         try:
-            n = x.text
-            if len(n) > 60:
-                post = Republicdb(title=n, created_date=timezone.now(), published_date=timezone.now())
-                post.save()
+            n = x.text.strip()
+            n2 = x.get('href').strip()
+            if (len(n) > 60):
+                resp = requests.get(n2)
+                soup2 = BeautifulSoup(resp.text, 'html.parser')
+
+                for x in soup2.find_all('time'):
+                    y = x.text[:14].strip()
+                    if (dateparser.parse(y) > d):
+                        qs = Republicdb(title=n, href=n2)
+                        qs.save()
+                        print(n, y)
+                    break
         except:
             p = 1
-    print(list)
     return HttpResponse("<h1>Success</h1>")
 
 
 def indiatv(request):
-    print("india tv")
-    url = 'https://www.indiatoday.in/'
-    k= False
-    resp = requests.get(url)
-    print(resp.status_code)
-    list = []
-    soup = BeautifulSoup(resp.text, 'html.parser')
-    for x in soup.find_all('a'):
-        try:
-            n = x.get('title')
-            if (len(n) > 60):
-                post = Indiatvdb(title=n, created_date=timezone.now(), published_date=timezone.now())
-                post.save()
-        except:
-            p = 1
-        print(list)
-        return HttpResponse("<h1>Success</h1>")
+    import requests
+    from bs4 import BeautifulSoup
+    import dateparser
+    from datetime import datetime, timedelta
+    url = 'https://www.hindustantimes.com/'
 
-
-def ndtv(request):
-    print("ndtv")
-    url = 'https://www.ndtv.com/'
     resp = requests.get(url)
-    list=[]
     soup = BeautifulSoup(resp.text, 'html.parser')
+    d1 = []
+    href = []
+    l = ['text-dt']
+    d = datetime.now() - timedelta(1)
     for x in soup.find_all('a'):
         try:
             n = x.text
+            n2 = x.get('href')
             if (len(n) > 60):
-                post = NDTVdb(title=n, created_date=timezone.now(), published_date=timezone.now())
-                post.save()
+                d1.append(n.strip())
+                href.append(n2.strip())
+                resp = requests.get(n2)
+                soup2 = BeautifulSoup(resp.text, 'html.parser')
+                for x in soup2.find_all('span'):
+                    if x.get('class') == l:
+                        y = x.text[9:22].strip()
+                        if (dateparser.parse(y) > d):
+                            qs = Indiatvdb(title=n, href=n2)
+                            qs.save()
+                            print(n, y)
+                        break
+        except:
+            p = 1
+    print("Sorry")
+
+
+def ndtv(request):
+    url = 'https://www.ndtv.com'
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    i = 1
+    data = ""
+    da = []
+    d1 = []
+    href = []
+    date = []
+    d = datetime.now() - timedelta(1)
+    for x in soup.find_all('a'):
+
+        try:
+            n = x.text.strip()
+            n2 = x.get('href').strip()
+            if (len(n) > 60):
+                d1.append(n)
+                href.append(n2)
+                resp = requests.get(n2)
+                soup2 = BeautifulSoup(resp.text, 'html.parser')
+                for x in soup2.find_all('span'):
+                    if x.get('itemprop') == "dateModified":
+                        y = x.text[9:22]
+                        date.append(y)
+                        # print(n,x.text[9:])
+                        y = y.lstrip(':')
+                        y = y.rstrip('I')
+                        if (dateparser.parse(y) > d):
+                            qs = NDTVdb(title=n , href=n2)
+                            qs.save()
+
+                            print(n, y)
+                            break
         except:
             p = 1
     return HttpResponse("<h1>Success</h1>")

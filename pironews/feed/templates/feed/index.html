@@ -42,25 +42,25 @@
             <h1><b>Republic TV</b></h1>
             {% for post in republic_posts %}
                 <div class="thumbnail">
-                    <h5><b>{{  post.title}}</b></h5>
+                    <h5><b><a href="{{post.href}}">{{  post.title}}</a></b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                     </div>
                 {% endfor %}
         </div>
         <div class="col-md-4">
-            <h1><b>India TV</b></h1>
+            <h1><b>Hindustan Times</b></h1>
                 {% for post in indiatv_posts %}
                     <div class="thumbnail">
-                        <h5><b>{{  post.title}}</b></h5>
-                        <h6 style="color:red;">{{ post.created_date }}</h6>
+                        <h5><b><a href="{{post.href}}">{{  post.title}}</a></b></h5>
+                        <h6 style="color:red;">{{ post.created_date}}</h6>
                          </div>
                 {% endfor %}
         </div>
         <div class="col-md-4">
-            <h1><b>Time of India </b></h1>
+            <h1><b>NDTV </b></h1>
                 {% for post in ndtv_posts %}
                     <div class="thumbnail">
-                        <h5><b>{{  post.title}}</b></h5>
+                        <h5><b><a href="{{post.href}}">{{  post.title}}</a></b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                          </div>
                 {% endfor %}
