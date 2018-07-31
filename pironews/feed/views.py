@@ -8,13 +8,25 @@ import dateparser
 from datetime import datetime, timedelta
 from .models import NDTVdb
 from django.utils import timezone
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 
 def index(request):
-    republicq = Republicdb.objects.all()
+    republic_list = Republicdb.objects.all()
     Indiatvq = Indiatvdb.objects.all()
     ndtvq = NDTVdb.objects.all()
+    paginator = Paginator(republic_list, 25)  # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        republic_set = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        republic_set = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        republic_set = paginator.page(paginator.num_pages)
     context = {
-        "republic_posts": republicq,
+        "republic_posts": republic_set,
         "indiatv_posts": Indiatvq,
         "ndtv_posts": ndtvq,
     }

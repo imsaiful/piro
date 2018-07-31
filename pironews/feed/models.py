@@ -11,6 +11,11 @@ class Republicdb(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering=["-created_date"]
+
+
+
 
 class Indiatvdb(models.Model):
     title = models.CharField(max_length=600)
@@ -19,6 +24,9 @@ class Indiatvdb(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering=["-created_date"]
 
 
 class NDTVdb(models.Model):
@@ -29,4 +37,5 @@ class NDTVdb(models.Model):
     def __str__(self):
         return self.title
 
-
+    class Meta:
+        ordering=["-created_date"]
