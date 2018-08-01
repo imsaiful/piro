@@ -14,7 +14,7 @@ SECRET_KEY = 'x72drsyv=*hor6-!uq62pbaqr0(e_cg_%2)hr(qo0^eu7!*5z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ec2-18-219-66-51.us-east-2.compute.amazonaws.com','127.0.0.1','localhost','18.219.66.51','http://trendinganalytica.com/']
+ALLOWED_HOSTS = ['ec2-18-219-66-51.us-east-2.compute.amazonaws.com','127.0.0.1','localhost','18.219.66.51','trendinganalytica.com']
 
 
 

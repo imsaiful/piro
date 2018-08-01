@@ -52,10 +52,9 @@ def republic(request):
         print("Error")
     print(resp)
     soup = BeautifulSoup(resp.text, 'html.parser')
-    d1 = []
-    href = []
-    date = []
+    title = []
     d = datetime.now() - timedelta(1)
+    print("Fetching News")
     for x in soup.find_all('a'):
         try:
             n = x.text.strip()
@@ -65,15 +64,23 @@ def republic(request):
                 soup2 = BeautifulSoup(resp.text, 'html.parser')
 
                 for x in soup2.find_all('time'):
-                    y = x.text[:14].strip()
-                    if (dateparser.parse(y) > d):
+                    y = x.text.strip()
+                    y = dateparser.parse(y)
+                    y = str(y)
+                    y = y[:10]
+                    d = str(d)
+                    d = d[:10]
+                    if (y > d):
                         qs = Republicdb(title=n, href=n2)
                         qs.save()
                         print(n, y)
-                    break
+                        break
         except:
             p = 1
-    return HttpResponse("<h1>Success</h1>")
+    print(title)
+    print("Finished")
+    return HttpResponse("<h1>Success NDTV</h1>")
+
 
 
 def indiatv(request):
@@ -108,7 +115,9 @@ def indiatv(request):
                         break
         except:
             p = 1
-    print("Sorry")
+    qs = Indiatvdb(title=n, href=n2)
+    qs.save()
+    print(n, y)
 
 
 def ndtv(request):
@@ -147,4 +156,4 @@ def ndtv(request):
                             break
         except:
             p = 1
-    return HttpResponse("<h1>Success</h1>")
+    return HttpResponse("<h1>Success NDTV</h1>")
