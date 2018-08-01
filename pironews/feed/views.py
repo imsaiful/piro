@@ -15,19 +15,21 @@ def index(request):
     republic_list = Republicdb.objects.all()
     Indiatv_list = Indiatvdb.objects.all()
     ndtv_list = NDTVdb.objects.all()
-    republic_paginator = Paginator(ndtv_list, 5)
-    Indiatv_paginator = Paginator(republic_list, 5)  # Show 25 contacts per page
-    ndtv__paginator = Paginator(Indiatv_list , 5)
-    page = request.GET.get('page')
+    republic_paginator = Paginator(republic_list, 5)
+    Indiatv_paginator = Paginator(Indiatv_list, 5)  # Show 25 contacts per page
+    ndtv__paginator = Paginator(ndtv_list , 5)
+    republic_page = request.GET.get('page')
+    indiatv_page =request.GET.get('page')
+    ndtv_page = request.GET.get('page')
     try:
-        republic_set = republic_paginator.page(page)
-        Indiatv_set =  Indiatv_paginator.page(page)
-        ndtv_set = ndtv__paginator.page(page)
+        republic_set = republic_paginator.page(republic_page )
+        Indiatv_set =  Indiatv_paginator.page(indiatv_page)
+        ndtv_set = ndtv__paginator.page(ndtv_page)
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         republic_set = republic_paginator.page(1)
-        Indiatv_set = republic_paginator.page(1)
-        ndtv_set = republic_paginator.page(1)
+        Indiatv_set = Indiatv_paginator.page(1)
+        ndtv_set = ndtv__paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         republic_set = republic_paginator.page(republic_paginator.num_pages)

@@ -12,15 +12,15 @@
             text-height: 24px;
             color:white;
             font-weight: 700;
-            float: left;
+
         }
         body { padding-top: 70px; }
     </style>
 </head>
 <body bgcolor="#E6E6FA">
 <div class="container">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+
+<nav class="container navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -43,7 +43,6 @@
       </form>
 
     </div>
-  </div>
 </nav>
     <div class="row">
 
@@ -54,6 +53,7 @@
                     <h5><b><a href="{{post.href}}">{{  post.title}}</a></b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                     </div>
+
                 {% endfor %}
             <div class="pagination">
                 <span class="step-links">
@@ -92,6 +92,7 @@
                         {% if indiatv_posts.has_next %}
                             <a href="?page={{ indiatv_posts.next_page_number }}">next</a>
                         {% endif %}
+                        <br>
                     </span>
                 </div>
 
@@ -123,8 +124,9 @@
         </div>
     </div>
 
+
 <footer>
-    <div class="container">
+
         <div class="row">
             <div class="col-md-4">
                 <ul><h4><b>Get to Know Us</b></h4>
@@ -147,32 +149,28 @@
                     <li><h5>Help</h5></li>
                 </ul>
             </div>
-
-
-
-
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-3">
 
-        </div>
-        <div class="col-md-6">
-            <p style="text-align:center">©2018, Piro Technologies Pvt Ltd</p>
-        </div>
-        <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <p style="text-align:center">©2018, Piro Technologies Pvt Ltd</p>
+            </div>
+            <div class="col-md-3">
 
+            </div>
         </div>
-    </div>
 
 
 </footer>
-    <br>
 
-</div>
+<br>
+
 <br>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>
 
