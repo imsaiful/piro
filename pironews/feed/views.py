@@ -12,37 +12,37 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 def index(request):
-    Model_one = Republicdb.objects.all()
-    paginator = Paginator(Model_one, 6)
-    page = request.GET.get('page1')
+    republic_list = Republicdb.objects.all()
+    paginator = Paginator(republic_list, 6)
+    page = request.GET.get('republic_page')
     try:
-        Model_one = paginator.page(page)
+        republic_list = paginator.page(page)
     except PageNotAnInteger:
-        Model_one = paginator.page(1)
+        republic_list = paginator.page(1)
     except EmptyPage:
-        Model_one = paginator.page(paginator.num_pages)
+        republic_list = paginator.page(paginator.num_pages)
 
-    Model_two = Indiatvdb.objects.all()
-    paginator = Paginator(Model_two, 6)
-    page = request.GET.get('page2')
+    hindustan_times_list = Indiatvdb.objects.all()
+    paginator = Paginator(hindustan_times_list,6)
+    page = request.GET.get('hindustan_times_page')
     try:
-        Model_two = paginator.page(page)
+        hindustan_times_list = paginator.page(page)
     except PageNotAnInteger:
-        Model_two = paginator.page(1)
+        hindustan_times_list = paginator.page(1)
     except EmptyPage:
-        Model_two = paginator.page(paginator.num_pages)
+        hindustan_times_list = paginator.page(paginator.num_pages)
 
-    Model_three = NDTVdb.objects.all()
-    paginator = Paginator(Model_two, 6)
-    page = request.GET.get('page3')
+    ndtv_list = NDTVdb.objects.all()
+    paginator = Paginator(ndtv_list, 6)
+    page = request.GET.get('ndtv_page')
     try:
-        Model_three = paginator.page(page)
+        ndtv_list = paginator.page(page)
     except PageNotAnInteger:
-        Model_three = paginator.page(1)
+        ndtv_list = paginator.page(1)
     except EmptyPage:
-        Model_three = paginator.page(paginator.num_pages)
+        ndtv_list = paginator.page(paginator.num_pages)
 
-    context = {'republic_posts': Model_one, 'indiatv_posts': Model_two, 'ndtv_posts': Model_three}
+    context = {'republic_posts': republic_list, 'indiatv_posts': hindustan_times_list, 'ndtv_posts': ndtv_list}
     return render(request, 'feed/index.html', context)
 
 def republic(request):
