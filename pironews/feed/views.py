@@ -42,7 +42,7 @@ def index(request):
     except EmptyPage:
         ndtv_list = paginator.page(paginator.num_pages)
 
-    context = {'republic_posts': republic_list, 'indiatv_posts': hindustan_times_list, 'ndtv_posts': ndtv_list}
+    context = {'republic_posts': republic_list, 'hindustan_time_post': hindustan_times_list, 'ndtv_posts': ndtv_list}
     return render(request, 'feed/index.html', context)
 
 def republic(request):
