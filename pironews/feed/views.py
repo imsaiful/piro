@@ -12,36 +12,38 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 def index(request):
-    republic_list = Republicdb.objects.all()
-    Indiatv_list = Indiatvdb.objects.all()
-    ndtv_list = NDTVdb.objects.all()
-    republic_paginator = Paginator(republic_list, 5)
-    Indiatv_paginator = Paginator(Indiatv_list, 5)  # Show 25 contacts per page
-    ndtv__paginator = Paginator(ndtv_list , 5)
-    republic_page = request.GET.get('page')
-    indiatv_page =request.GET.get('page')
-    ndtv_page = request.GET.get('page')
+    Model_one = Republicdb.objects.all()
+    paginator = Paginator(Model_one, 6)
+    page = request.GET.get('page1')
     try:
-        republic_set = republic_paginator.page(republic_page )
-        Indiatv_set =  Indiatv_paginator.page(indiatv_page)
-        ndtv_set = ndtv__paginator.page(ndtv_page)
+        Model_one = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        republic_set = republic_paginator.page(1)
-        Indiatv_set = Indiatv_paginator.page(1)
-        ndtv_set = ndtv__paginator.page(1)
+        Model_one = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        republic_set = republic_paginator.page(republic_paginator.num_pages)
-        Indiatv_set =Indiatv_paginator .page(republic_paginator.num_pages)
-        ndtv_set = ndtv__paginator.page(republic_paginator.num_pages)
-    context = {
-        "republic_posts": republic_set,
-        "indiatv_posts": Indiatv_set,
-        "ndtv_posts": ndtv_set,
-    }
-    return render(request, 'feed/index.html', context)
+        Model_one = paginator.page(paginator.num_pages)
 
+    Model_two = Indiatvdb.objects.all()
+    paginator = Paginator(Model_two, 6)
+    page = request.GET.get('page2')
+    try:
+        Model_two = paginator.page(page)
+    except PageNotAnInteger:
+        Model_two = paginator.page(1)
+    except EmptyPage:
+        Model_two = paginator.page(paginator.num_pages)
+
+    Model_three = NDTVdb.objects.all()
+    paginator = Paginator(Model_two, 6)
+    page = request.GET.get('page3')
+    try:
+        Model_three = paginator.page(page)
+    except PageNotAnInteger:
+        Model_three = paginator.page(1)
+    except EmptyPage:
+        Model_three = paginator.page(paginator.num_pages)
+
+    context = {'republic_posts': Model_one, 'indiatv_posts': Model_two, 'ndtv_posts': Model_three}
+    return render(request, 'feed/index.html', context)
 
 def republic(request):
     url = 'https://www.republicworld.com/india-news'

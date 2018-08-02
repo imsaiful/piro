@@ -58,7 +58,7 @@
             <div class="pagination">
                 <span class="step-links">
                     {% if republic_posts.has_previous %}
-                        <a href="?page={{ republic_posts.previous_page_number }}">previous</a>
+                        <a href="?page1={{ republic_posts.previous_page_number }}">previous</a>
                     {% endif %}
 
                     <span class="current">
@@ -66,7 +66,7 @@
                     </span>
 
                     {% if republic_posts.has_next %}
-                        <a href="?page={{ republic_posts.next_page_number }}">next</a>
+                        <a href="?page1={{ republic_posts.next_page_number }}">next</a>
                     {% endif %}
                 </span>
             </div>
@@ -82,7 +82,7 @@
                 <div class="pagination">
                     <span class="step-links">
                         {% if indiatv_posts.has_previous %}
-                            <a href="?page={{ indiatv_posts.previous_page_number }}">previous</a>
+                            <a href="?page2={{ indiatv_posts.previous_page_number }}">previous</a>
                         {% endif %}
 
                         <span class="current">
@@ -90,12 +90,11 @@
                         </span>
 
                         {% if indiatv_posts.has_next %}
-                            <a href="?page={{ indiatv_posts.next_page_number }}">next</a>
+                            <a href="?page2={{ indiatv_posts.next_page_number }}">next</a>
                         {% endif %}
                         <br>
                     </span>
                 </div>
-
         </div>
         <div class="col-md-4">
             <h1><b>NDTV </b></h1>
@@ -108,7 +107,7 @@
                 <div class="pagination">
                 <span class="step-links">
                     {% if ndtv_posts.has_previous %}
-                        <a href="?page={{ ndtv_posts.previous_page_number }}">previous</a>
+                        <a href="?page3={{ ndtv_posts.previous_page_number }}">previous</a>
                     {% endif %}
 
                     <span class="current">
@@ -116,7 +115,7 @@
                     </span>
 
                     {% if ndtv_posts.has_next %}
-                        <a href="?page={{ ndtv_posts.next_page_number }}">next</a>
+                        <a href="?page3={{ ndtv_posts.next_page_number }}">next</a>
                     {% endif %}
                 </span>
             </div>
