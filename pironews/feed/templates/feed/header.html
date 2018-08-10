@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Piro News</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        a {
+    color: #00f;
+}
+p, a  {
+    color: #000;
+}
+
+        footer{
+            background:#414141;
+            text-height: 24px;
+            color:white;
+            font-weight: 700;
+
+        }
+         body {
+                background-color: #F8F8F8!important;
+                margin-top: 65px;
+                link="black"
+            }
+
+        .pager {
+            padding-top: 20px;
+            align-content: center;
+
+            }
+   .pager .page a {
+      border: 3px solid #bbbbbb;
+      margin-left: 1px;
+      margin-right: 1px;
+      padding-left: 4px;
+      padding-right: 4px;
+      text-decoration: none;
+      color: #000000;
+      }
+   .pager .current {
+      border: 3px solid #444444;
+      margin-left: 2px;
+      margin-right: 2px;
+      padding-left: 2px;
+      }
+    </style>
+</head>
+<body bgcolor="#E6E6FA">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Piro News</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">News </a></li>
+        <li><a href="#">Statistics</a></li>
+        <li><a href="/republics">More News from Republic</a></li>
+
+      </ul>
+      <form class="navbar-form navbar-right" action="/action_page.php">
+          <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+    </div>
+        </div>
+</nav>

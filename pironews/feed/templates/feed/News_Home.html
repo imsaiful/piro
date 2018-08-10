@@ -1,0 +1,26 @@
+{% extends 'feed/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+
+        <div class="thumbnail">
+            <h1>{{ Name }}</h1>
+         {% for post in news %}
+                    <div class="thumbnail">
+                        <h5><b><a href="{{post.href}}">{{ post.title }}</a></b></h5>
+                        <h6 style="color:red;">{{ post.created_date }}</h6>
+                         </div>
+                {% endfor %}
+
+
+    </div>
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
+{% endblock %}

@@ -20,8 +20,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^feed', include('feed.urls')),
     url(r'^', include('feed.urls')),
+    url(r'^news', include('feed.urls')),
+    url(r'^stats', include('stats.urls')),
 ]
 
 if settings.DEBUG:

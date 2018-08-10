@@ -9,41 +9,25 @@ from datetime import datetime, timedelta
 from .models import NDTVdb
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.views import generic
+
+x = 0
+y = 0
+z = 0
 
 
 def index(request):
-    republic_list = Republicdb.objects.all()
-    paginator = Paginator(republic_list, 6)
-    page = request.GET.get('republic_page')
-    try:
-        republic_list = paginator.page(page)
-    except PageNotAnInteger:
-        republic_list = paginator.page(1)
-    except EmptyPage:
-        republic_list = paginator.page(paginator.num_pages)
+    republic_list = Republicdb.objects.order_by('-created_date')[0:5]
+    hindustan_times_list = NDTVdb.objects.order_by('-created_date')[0:5]
+    ndtv_list = NDTVdb.objects.order_by('-created_date')[0:5]
 
-    hindustan_times_list = Indiatvdb.objects.all()
-    paginator = Paginator(hindustan_times_list,6)
-    page = request.GET.get('hindustan_times_page')
-    try:
-        hindustan_times_list = paginator.page(page)
-    except PageNotAnInteger:
-        hindustan_times_list = paginator.page(1)
-    except EmptyPage:
-        hindustan_times_list = paginator.page(paginator.num_pages)
-
-    ndtv_list = NDTVdb.objects.all()
-    paginator = Paginator(ndtv_list, 6)
-    page = request.GET.get('ndtv_page')
-    try:
-        ndtv_list = paginator.page(page)
-    except PageNotAnInteger:
-        ndtv_list = paginator.page(1)
-    except EmptyPage:
-        ndtv_list = paginator.page(paginator.num_pages)
-
-    context = {'republic_posts': republic_list, 'hindustan_time_post': hindustan_times_list, 'ndtv_posts': ndtv_list}
+    context = {
+        'republic_posts': republic_list,
+        'hindustan_posts': ndtv_list,
+        'ndtv_posts': ndtv_list,
+    }
     return render(request, 'feed/index.html', context)
+
 
 def republic(request):
     url = 'https://www.republicworld.com/india-news'
@@ -84,7 +68,6 @@ def republic(request):
     return HttpResponse("<h1>Success NDTV</h1>")
 
 
-
 def indiatv(request):
     import requests
     from bs4 import BeautifulSoup
@@ -122,6 +105,10 @@ def indiatv(request):
     print(n, y)
 
 
+def ajax(request):
+    return HttpResponse("<h1>Hello Ajex</h1>")
+
+
 def ndtv(request):
     url = 'https://www.ndtv.com'
     resp = requests.get(url)
@@ -151,7 +138,7 @@ def ndtv(request):
                         y = y.lstrip(':')
                         y = y.rstrip('I')
                         if (dateparser.parse(y) > d):
-                            qs = NDTVdb(title=n , href=n2)
+                            qs = NDTVdb(title=n, href=n2)
                             qs.save()
 
                             print(n, y)
@@ -159,3 +146,35 @@ def ndtv(request):
         except:
             p = 1
     return HttpResponse("<h1>Success NDTV</h1>")
+
+
+def Republic_Home(request):
+    qs = Republicdb.objects.all()
+    context = {
+        "news": qs,
+        "Name": 'Republic',
+
+    }
+    return render(request, "feed/News_Home.html", context)
+
+
+def Hindustan_Home(request):
+    print("hindustanHome")
+    qs = NDTVdb.objects.all()
+    print(qs)
+    context = {
+        "Name":'Hindustan Times',
+        "news": qs,
+
+    }
+    return render(request, "feed/News_Home.html", context)
+
+def Ndtv_Home(request):
+    print("hindustanHome")
+    qs = NDTVdb.objects.all()
+    print(qs)
+    context = {
+        "news": qs,
+        "Name": 'NDTV',
+    }
+    return render(request, "feed/News_Home.html", context)
