@@ -8,12 +8,25 @@
 
         <div class="thumbnail">
             <h1>{{ Name }}</h1>
-         {% for post in news %}
+                {% for post in news %}
                     <div class="thumbnail">
                         <h5><b><a href="{{post.href}}">{{ post.title }}</a></b></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
-                         </div>
+                    </div>
                 {% endfor %}
+            <div class="pager">
+                 <span class="step-links">
+                     {% if news.has_previous %}
+                     <span class="page"><a href="?page={{ news.previous_page_number }}">previous</a></span>
+                     {% endif %}
+                     <span class="current">
+                         Page {{ news.number }}
+                     </span>
+                     {% if news.has_next %}
+                         <span class="page"> <a href="?page={{ news.next_page_number }}">next</a></span>
+                     {% endif %}
+                 </span>
+             </div>
 
 
     </div>

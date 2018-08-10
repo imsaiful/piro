@@ -150,6 +150,19 @@ def ndtv(request):
 
 def Republic_Home(request):
     qs = Republicdb.objects.all()
+    paginator = Paginator(qs, 10)
+    page = request.GET.get('page')
+    try:
+        qs = paginator.page(page)
+    except PageNotAnInteger:
+        qs = paginator.page(1)
+    except EmptyPage:
+        qs = paginator.page(paginator.num_pages)
+    context = {
+        "news": qs,
+        "Name": 'NDTV',
+    }
+
     context = {
         "news": qs,
         "Name": 'Republic',
@@ -161,20 +174,41 @@ def Republic_Home(request):
 def Hindustan_Home(request):
     print("hindustanHome")
     qs = NDTVdb.objects.all()
-    print(qs)
+    paginator = Paginator(qs, 10)
+    page = request.GET.get('page')
+    try:
+        qs = paginator.page(page)
+    except PageNotAnInteger:
+        qs = paginator.page(1)
+    except EmptyPage:
+        qs = paginator.page(paginator.num_pages)
     context = {
-        "Name":'Hindustan Times',
+        "news": qs,
+        "Name": 'NDTV',
+    }
+
+    context = {
+        "Name": 'Hindustan Times',
         "news": qs,
 
     }
     return render(request, "feed/News_Home.html", context)
 
+
 def Ndtv_Home(request):
     print("hindustanHome")
     qs = NDTVdb.objects.all()
-    print(qs)
+    paginator = Paginator(qs, 10)
+    page = request.GET.get('page')
+    try:
+        qs = paginator.page(page)
+    except PageNotAnInteger:
+        qs = paginator.page(1)
+    except EmptyPage:
+        qs = paginator.page(paginator.num_pages)
     context = {
         "news": qs,
         "Name": 'NDTV',
     }
+
     return render(request, "feed/News_Home.html", context)
