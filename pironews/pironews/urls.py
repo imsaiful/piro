@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('feed.urls')),
     url(r'^news', include('feed.urls')),
-    url(r'^stats', include('stats.urls')),
 ]
 
 if settings.DEBUG:
