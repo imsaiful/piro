@@ -1,8 +1,8 @@
    <h1><b>NDTV </b></h1>
                 {% for post in ndtv_posts %}
                     <div class="thumbnail">
-                        <h5><b><a href="{{post.href}}">{{ post.title }}</a></b></h5>
+                        <h5><a href="{{post.href}}">{{ post.title }}</a></h5>
                         <h6 style="color:red;">{{ post.created_date }}</h6>
                          </div>
                 {% endfor %}
-                 <a href="{% url 'feed:ndtvhome' %}">More News from Republic</a>
+                 <a href="{% url 'feed:ndtvhome' %}">More News from NDTV</a>

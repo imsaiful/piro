@@ -18,12 +18,12 @@ z = 0
 
 def index(request):
     republic_list = Republicdb.objects.order_by('-created_date')[0:5]
-    hindustan_times_list = NDTVdb.objects.order_by('-created_date')[0:5]
+    hindustan_times_list = Indiatvdb.objects.order_by('-created_date')[0:5]
     ndtv_list = NDTVdb.objects.order_by('-created_date')[0:5]
 
     context = {
         'republic_posts': republic_list,
-        'hindustan_posts': ndtv_list,
+        'hindustan_posts': hindustan_times_list,
         'ndtv_posts': ndtv_list,
     }
     return render(request, 'feed/index.html', context)
@@ -65,7 +65,7 @@ def republic(request):
             p = 1
     print(title)
     print("Finished")
-    return HttpResponse("<h1>Success NDTV</h1>")
+    return HttpResponse("<h1>Success Republic</h1>")
 
 
 def indiatv(request):
@@ -103,6 +103,7 @@ def indiatv(request):
     qs = Indiatvdb(title=n, href=n2)
     qs.save()
     print(n, y)
+    return HttpResponse("<h1>Success Hindustan</h1>")
 
 
 def ajax(request):
@@ -173,7 +174,7 @@ def Republic_Home(request):
 
 def Hindustan_Home(request):
     print("hindustanHome")
-    qs = NDTVdb.objects.all()
+    qs = Indiatvdb.objects.all()
     paginator = Paginator(qs, 10)
     page = request.GET.get('page')
     try:
@@ -184,14 +185,9 @@ def Hindustan_Home(request):
         qs = paginator.page(paginator.num_pages)
     context = {
         "news": qs,
-        "Name": 'NDTV',
+        "Name": 'Hindutan Times',
     }
 
-    context = {
-        "Name": 'Hindustan Times',
-        "news": qs,
-
-    }
     return render(request, "feed/News_Home.html", context)
 
 
