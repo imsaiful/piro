@@ -166,10 +166,6 @@ def Republic_Home(request):
         qs = paginator.page(1)
     except EmptyPage:
         qs = paginator.page(paginator.num_pages)
-    context = {
-        "news": qs,
-        "Name": 'NDTV',
-    }
 
     context = {
         "news": qs,
