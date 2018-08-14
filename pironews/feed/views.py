@@ -1,3 +1,4 @@
+from __future__ import print_function
 from django.shortcuts import render
 from .models import Republicdb, Indiatvdb, NDTVdb
 from django.utils import timezone
@@ -10,6 +11,12 @@ from .models import NDTVdb
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views import generic
+import sys  # used for the storage class
+import requests
+import base64  # used for encoding string
+import urllib.parse  # used for enconding
+from time import gmtime, strftime  # used for gathering time
+from subprocess import call, check_output
 
 x = 0
 y = 0
@@ -208,3 +215,8 @@ def Ndtv_Home(request):
     }
 
     return render(request, "feed/News_Home.html", context)
+
+
+def twitter_trend(request):
+    output = check_output(["python", "/home/imsaiful/PiroProject/pironews/feed/twitter/trends.py"])
+    return HttpResponse(output, content_type='text/plain')
