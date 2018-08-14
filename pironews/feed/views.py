@@ -214,5 +214,6 @@ def Ndtv_Home(request):
 
 
 def twitter_trend(request):
-    output = check_output(["python", "/home/imsaiful/PiroProject/pironews/feed/twitter/trends.py"])
+    output = check_output(["python",  "/home/imsaiful/PiroProject/pironews/feed/twitter/trends.py"])
+    print(output)
     return HttpResponse(output, content_type='text/plain')

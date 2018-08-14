@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import *
 import sys # used for the storage class
 import requests
 import pycurl # used for curling
@@ -115,8 +114,6 @@ def grab_a_tweet(bearer_token, tweet_id):
 	current_time = time.mktime(time.gmtime())
 	return {'tweet':tweet, '_current_time':current_time, '_reset_time':reset_time, '_pings_left':pings_left}
 
-
-
 consumer_key = twitter_credentials.CONSUMER_KEY # put your apps consumer key here
 consumer_secret = twitter_credentials.CONSUMER_SECRET # put your apps consumer secret here
 
@@ -126,13 +123,7 @@ tweet = grab_a_tweet(bearer_token,'23424848') # grabs a single tweet & some extr
 print(type(tweet['tweet']))
 print(tweet['_current_time'])
 json_obj = json.loads(tweet['tweet'])
+
 for i in json_obj:
     for j in i['trends']:
         print(j['name'])
-
-
-
-
-
-
-
