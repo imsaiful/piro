@@ -18,6 +18,9 @@ ALLOWED_HOSTS = ['ec2-18-219-66-51.us-east-2.compute.amazonaws.com','127.0.0.1',
 
 
 
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': False,
+}
 
 
 
