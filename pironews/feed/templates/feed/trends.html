@@ -9,8 +9,9 @@
                      <p>Trending Tweets</p>
                  </font>
              </div>
-        {% for tweets in trends %}
-        {{ tweets }}<br>
+        {% for t,u in tweets_urls %}
+        <a href="{{ u }}">{{ t }}</a>
+        <br>
         {% endfor %}
 
     </div>

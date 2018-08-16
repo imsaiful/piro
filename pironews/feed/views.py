@@ -215,9 +215,10 @@ def Ndtv_Home(request):
 
 
 def twitter_trend(request):
-    output = main()
+    tweet, url = main()
+
     context = {
-        "trends": output,
+        'tweets_urls': zip(tweet, url),
     }
-    print(output)
-    return render(request,"feed/trends.html",context)
+    print(context)
+    return render(request, "feed/trends.html", context)
