@@ -1,6 +1,7 @@
 from __future__ import print_function
 import sys # used for the storage class
 import requests
+import pycurl # used for curling
 import base64 # used for encoding string
 import urllib.parse # used for enconding
 from io import StringIO# used for curl buffer grabbing
