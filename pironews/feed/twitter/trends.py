@@ -11,7 +11,7 @@ import json # used for decoding json token
 import time # used for stuff to do with the rate limiting
 from time import sleep # used for rate limiting
 from time import gmtime, strftime # used for gathering time
-import twitter_credentials
+from . import twitter_credentials
 
 OAUTH2_TOKEN = 'https://api.twitter.com/oauth2/token'
 
@@ -114,16 +114,19 @@ def grab_a_tweet(bearer_token, tweet_id):
 	current_time = time.mktime(time.gmtime())
 	return {'tweet':tweet, '_current_time':current_time, '_reset_time':reset_time, '_pings_left':pings_left}
 
-consumer_key = twitter_credentials.CONSUMER_KEY # put your apps consumer key here
-consumer_secret = twitter_credentials.CONSUMER_SECRET # put your apps consumer secret here
 
-bearer_token = get_bearer_token(consumer_key,consumer_secret)
+def main():
+    consumer_key = twitter_credentials.CONSUMER_KEY # put your apps consumer key here
+    consumer_secret = twitter_credentials.CONSUMER_SECRET # put your apps consumer secret here
 
-tweet = grab_a_tweet(bearer_token,'23424848') # grabs a single tweet & some extra bits
-print(type(tweet['tweet']))
-print(tweet['_current_time'])
-json_obj = json.loads(tweet['tweet'])
+    bearer_token = get_bearer_token(consumer_key,consumer_secret)
 
-for i in json_obj:
-    for j in i['trends']:
-        print(j['name'])
+    tweet = grab_a_tweet(bearer_token,'23424848') # grabs a single tweet & some extra bits
+    print(type(tweet['tweet']))
+    print(tweet['_current_time'])
+    json_obj = json.loads(tweet['tweet'])
+    list=[]
+    for i in json_obj:
+        for j in i['trends']:
+            list.append(j['name'])
+    return list

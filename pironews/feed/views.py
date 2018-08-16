@@ -17,6 +17,7 @@ import base64  # used for encoding string
 import urllib.parse  # used for enconding
 from time import gmtime, strftime  # used for gathering time
 from subprocess import call, check_output
+from .twitter import main
 
 x = 0
 y = 0
@@ -214,6 +215,9 @@ def Ndtv_Home(request):
 
 
 def twitter_trend(request):
-    output = check_output(["python",  "/home/imsaiful/PiroProject/pironews/feed/twitter/trends.py"])
+    output = main()
+    context = {
+        "trends": output,
+    }
     print(output)
-    return HttpResponse(output, content_type='text/plain')
+    return render(request,"feed/trends.html",context)
