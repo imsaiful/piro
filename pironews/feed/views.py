@@ -1,4 +1,7 @@
 from __future__ import print_function
+
+from threading import Thread
+
 from django.shortcuts import render
 from .models import Republicdb, Indiatvdb, NDTVdb
 from django.utils import timezone
@@ -18,6 +21,8 @@ import urllib.parse  # used for enconding
 from time import gmtime, strftime  # used for gathering time
 from subprocess import call, check_output
 from .twitter import main
+import schedule
+import time
 
 x = 0
 y = 0
@@ -110,7 +115,6 @@ def indiatv(request):
             p = 1
     qs = Indiatvdb(title=n, href=n2)
     qs.save()
-    print(n, y)
     return HttpResponse("<h1>Success Hindustan</h1>")
 
 
@@ -222,3 +226,19 @@ def twitter_trend(request):
     }
     print(context)
     return render(request, "feed/trends.html", context)
+
+
+schedule.every().day.at("18:43").do(republic, requests)
+schedule.every().day.at("18:43").do(indiatv, requests)
+schedule.every().day.at("18:43").do(ndtv, requests)
+
+
+class ScheduleThread(Thread):
+    @classmethod
+    def run(cls):
+        while True:
+            schedule.run_pending()
+            time.sleep(10)
+
+
+ScheduleThread().start()

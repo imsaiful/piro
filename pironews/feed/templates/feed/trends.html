@@ -10,7 +10,8 @@
                  </font>
              </div>
         {% for t,u in tweets_urls %}
-        <a href="{{ u }}">{{ t }}</a>
+        <div id="tweet"><a href="{{ u }}"><p style="color:#1860c0;">{{ t }}</p></a></div>
+        <div id="tweet_link_result"></div>
         <br>
         {% endfor %}
 
@@ -18,3 +19,5 @@
     <div class="col-md-3"></div>
 </div>
  {% endblock %}
+
+

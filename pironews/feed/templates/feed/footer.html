@@ -72,6 +72,27 @@ console.log(result);
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function ActivatePlacesSearch(){
+        vat input=document.getELementById('id_city');
+        var autocomplete=new google.maps.places.Autocomplete(input);
+    }
+
+
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-nJ5FhulvvzeVy3zAdEVOOfpKlj8u5Mc&libraries=places&callback=ActivatePlacesSearch">
+
+</script>
+<script>
+    $(function() {
+        $('#tweet a').click(function() {
+            $.get(this.href, function(data) {
+                $('#tweet_link_result').html(data);
+            });
+            return false;
+        });
+    });
+</script>
 </div>
 </body>
 </html>
