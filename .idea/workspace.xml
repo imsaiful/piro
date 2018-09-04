@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d799046-e923-4c75-aee5-9c2c74f69099" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myvenv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/myvenv/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -89,8 +87,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pironews/feed/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="230" column="45" selection-start-line="230" selection-start-column="44" selection-end-line="230" selection-end-column="45" />
+            <state relative-caret-position="177">
+              <caret line="244" lean-forward="true" selection-start-line="230" selection-end-line="244" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -336,7 +334,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4984733" weight="0.32917318" />
       <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49770993" weight="0.32917318" />
       <window_info id="Structure" order="1" sideWeight="0.268714" side_tool="true" weight="0.24961832" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.6984733" visible="true" weight="0.5351014" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.6984733" visible="true" weight="0.5444618" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32977098" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -728,8 +726,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pironews/feed/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="230" column="45" selection-start-line="230" selection-start-column="44" selection-end-line="230" selection-end-column="45" />
+        <state relative-caret-position="177">
+          <caret line="244" lean-forward="true" selection-start-line="230" selection-end-line="244" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
