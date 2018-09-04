@@ -3,7 +3,7 @@ from __future__ import print_function
 from threading import Thread
 
 from django.shortcuts import render
-from .models import Republicdb, Indiatvdb, NDTVdb
+from .models import Republicdb, Hindustan_db, NDTVdb
 from django.utils import timezone
 from django.http import HttpResponse
 import requests
@@ -31,7 +31,7 @@ z = 0
 
 def index(request):
     republic_list = Republicdb.objects.order_by('-created_date')[0:5]
-    hindustan_times_list = Indiatvdb.objects.order_by('-created_date')[0:5]
+    hindustan_times_list = Hindustan_db.objects.order_by('-created_date')[0:5]
     ndtv_list = NDTVdb.objects.order_by('-created_date')[0:5]
 
     context = {
@@ -82,12 +82,7 @@ def republic(request):
 
 
 def indiatv(request):
-    import requests
-    from bs4 import BeautifulSoup
-    import dateparser
-    from datetime import datetime, timedelta
     url = 'https://www.hindustantimes.com/'
-
     resp = requests.get(url)
     soup = BeautifulSoup(resp.text, 'html.parser')
     d1 = []
@@ -107,19 +102,14 @@ def indiatv(request):
                     if x.get('class') == l:
                         y = x.text[9:22].strip()
                         if (dateparser.parse(y) > d):
-                            qs = Indiatvdb(title=n, href=n2)
+                            qs = Hindustan_db(title=n, href=n2)
                             qs.save()
                             print(n, y)
                         break
         except:
             p = 1
-    qs = Indiatvdb(title=n, href=n2)
-    qs.save()
     return HttpResponse("<h1>Success Hindustan</h1>")
 
-
-def ajax(request):
-    return HttpResponse("<h1>Hello Ajex</h1>")
 
 
 def ndtv(request):
@@ -182,7 +172,7 @@ def Republic_Home(request):
 
 def Hindustan_Home(request):
     print("hindustanHome")
-    qs = Indiatvdb.objects.all()
+    qs = Hindustan_db.objects.all()
     paginator = Paginator(qs, 10)
     page = request.GET.get('page')
     try:

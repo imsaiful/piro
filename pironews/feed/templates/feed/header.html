@@ -92,11 +92,11 @@ p, a  {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Piro News</a>
+      <a class="navbar-brand" href="{% url 'feed:index' %}">Piro News</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="{% url 'feed:index' %}">Home</a></li>
         <li><a href="#">News </a></li>
         <li><a href="{% url 'feed:twitter' %}">Statistics</a></li>
       </ul>
