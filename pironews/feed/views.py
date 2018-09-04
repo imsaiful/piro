@@ -228,9 +228,9 @@ def twitter_trend(request):
     return render(request, "feed/trends.html", context)
 
 
-schedule.every().day.at("18:43").do(republic, requests)
-schedule.every().day.at("18:43").do(indiatv, requests)
-schedule.every().day.at("18:43").do(ndtv, requests)
+schedule.every().day.at("23:43").do(republic, requests)
+schedule.every().day.at("23:45").do(indiatv, requests)
+schedule.every().day.at("23:47").do(ndtv, requests)
 
 
 class ScheduleThread(Thread):
