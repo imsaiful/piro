@@ -28,7 +28,7 @@ x = 0
 y = 0
 z = 0
 
-
+#second phace now begin with the scrapy
 def index(request):
     republic_list = Republicdb.objects.order_by('-created_date')[0:5]
     hindustan_times_list = Hindustan_db.objects.order_by('-created_date')[0:5]
