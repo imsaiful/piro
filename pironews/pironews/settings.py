@@ -1,9 +1,7 @@
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings++++++++++ - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -14,15 +12,11 @@ SECRET_KEY = 'x72drsyv=*hor6-!uq62pbaqr0(e_cg_%2)hr(qo0^eu7!*5z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','18.191.255.44','trendinganalytica.com']
-
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '18.223.151.76', 'trendinganalytica.com']
 
 WKHTMLTOPDF_CMD_OPTIONS = {
     'quiet': False,
 }
-
-
 
 # Application definition
 
@@ -66,19 +60,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pironews.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME':'piro',
-        'USER':'piro',
-        'PASSWORD':'research123',
-        'HOST':'piro.ceubekalawiz.us-east-2.rds.amazonaws.com',
-        #'HOST':'localhost',
-        'PORT':'5432',                      # Set to empty string for default.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'piro',
+        'USER': 'piro',
+        'PASSWORD': 'research123',
+        'HOST': 'piro.ceubekalawiz.us-east-2.rds.amazonaws.com',
+        # 'HOST':'localhost',
+        'PORT': '5432',  # Set to empty string for default.
     }
 }
 
@@ -100,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -114,13 +106,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "..","static")
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "static")
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "..","media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "..", "media")
 MEDIA_URL = '/media/'
-#STATIC_ROOT = "/var/www/http://ec2-18-222-186-240.us-east-2.compute.amazonaws.com/static/"
+# STATIC_ROOT = "/var/www/http://ec2-18-222-186-240.us-east-2.compute.amazonaws.com/static/"
