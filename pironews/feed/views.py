@@ -3,14 +3,13 @@ from __future__ import print_function
 from threading import Thread
 
 from django.shortcuts import render
-from .models import Republicdb, Hindustan_db, NDTVdb
+from .models import Republic, Hindustan, Ndtv
 from django.utils import timezone
 from django.http import HttpResponse
 import requests
 from bs4 import BeautifulSoup
 import dateparser
 from datetime import datetime, timedelta
-from .models import NDTVdb
 from django.utils import timezone
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.views import generic
@@ -30,9 +29,9 @@ z = 0
 
 #second phace now begin with the scrapy
 def index(request):
-    republic_list = Republicdb.objects.order_by('-created_date')[0:5]
-    hindustan_times_list = Hindustan_db.objects.order_by('-created_date')[0:5]
-    ndtv_list = NDTVdb.objects.order_by('-created_date')[0:5]
+    republic_list = Republic.objects.order_by('-date')[0:5]
+    hindustan_times_list = Hindustan.objects.order_by('-date')[0:5]
+    ndtv_list = Ndtv.objects.order_by('-date')[0:5]
 
     context = {
         'republic_posts': republic_list,
@@ -70,7 +69,7 @@ def republic(request):
                     d = str(d)
                     d = d[:10]
                     if (y > d):
-                        qs = Republicdb(title=n, href=n2)
+                        qs = Republic(title=n, href=n2)
                         qs.save()
                         print(n, y)
                         break
@@ -102,7 +101,7 @@ def indiatv(request):
                     if x.get('class') == l:
                         y = x.text[9:22].strip()
                         if (dateparser.parse(y) > d):
-                            qs = Hindustan_db(title=n, href=n2)
+                            qs = Hindustan(title=n, href=n2)
                             qs.save()
                             print(n, y)
                         break
@@ -141,7 +140,7 @@ def ndtv(request):
                         y = y.lstrip(':')
                         y = y.rstrip('I')
                         if (dateparser.parse(y) > d):
-                            qs = NDTVdb(title=n, href=n2)
+                            qs = Ndtv(title=n, href=n2)
                             qs.save()
 
                             print(n, y)
@@ -152,7 +151,7 @@ def ndtv(request):
 
 
 def Republic_Home(request):
-    qs = Republicdb.objects.all()
+    qs = Republic.objects.all()
     paginator = Paginator(qs, 10)
     page = request.GET.get('page')
     try:
@@ -172,7 +171,7 @@ def Republic_Home(request):
 
 def Hindustan_Home(request):
     print("hindustanHome")
-    qs = Hindustan_db.objects.all()
+    qs = Hindustan.objects.all()
     paginator = Paginator(qs, 10)
     page = request.GET.get('page')
     try:
@@ -191,7 +190,7 @@ def Hindustan_Home(request):
 
 def Ndtv_Home(request):
     print("hindustanHome")
-    qs = NDTVdb.objects.all()
+    qs = Ndtv.objects.all()
     paginator = Paginator(qs, 10)
     page = request.GET.get('page')
     try:

@@ -2,8 +2,8 @@
 <h1><b>Republic news</b></h1>
                 {% for post in republic_posts %}
                     <div class="thumbnail">
-                        <p><a href="{{post.href}}">{{ post.title }}</a></p>
-                        <h6 style="color:red;">{{ post.created_date }}</h6>
+                        <p><a href="{{post.link}}">{{ post.headline }}</a></p>
+                        <h6 style="color:red;">{{ post.date }}</h6>
                          </div>
                 {% endfor %}
    <a href="{% url 'feed:republichome' %}">More News from Republic</a>

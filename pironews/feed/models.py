@@ -2,38 +2,67 @@ from django.db import models
 from django.utils import timezone
 
 
-class Republicdb(models.Model):
-    title = models.CharField(max_length=600)
-    href = models.CharField(max_length=600, default="2")
-
-    created_date = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        ordering = ["-created_date"]
-
-
-class Hindustan_db(models.Model):
-    title = models.CharField(max_length=600)
-    href = models.CharField(max_length=600, default="2")
-    created_date = models.DateTimeField(default=timezone.now)
+# Create your models here.
+class Republic(models.Model):
+    headline = models.TextField(null=False)
+    link = models.TextField(null=False)
+    date = models.DateTimeField(default=timezone.now)
+    category = models.TextField(null=True)
+    sentiment = models.TextField(null=True)
 
     def __str__(self):
-        return self.title
+        return self.headline
 
     class Meta:
-        ordering = ["-created_date"]
+        ordering = ["-id"]
 
 
-class NDTVdb(models.Model):
-    title = models.CharField(max_length=600)
-    href = models.CharField(max_length=600, default="2")
-    created_date = models.DateTimeField(default=timezone.now)
+class Indiatoday(models.Model):
+    headline = models.TextField(null=False)
+    link = models.TextField(null=False)
+    date = models.DateTimeField(default=timezone.now)
+    category = models.TextField(null=True)
+    sentiment = models.TextField(null=True)
 
     def __str__(self):
-        return self.title
+        return self.headline
 
     class Meta:
-        ordering = ["-created_date"]
+        ordering = ["-id"]
+
+
+class Ndtv(models.Model):
+    headline = models.TextField(null=False)
+    link = models.TextField(null=False)
+    date = models.DateTimeField(default=timezone.now)
+    category = models.TextField(null=True)
+    sentiment = models.TextField(null=True)
+
+    def __str__(self):
+        context={
+            "headline":self.headline,
+            "category":self.category
+        }
+        return context
+
+    class Meta:
+        ordering = ["-id"]
+
+
+
+class Hindustan(models.Model):
+    headline = models.TextField(null=False)
+    link = models.TextField(null=False)
+    date = models.DateTimeField(default=timezone.now)
+    category = models.TextField(null=True)
+    sentiment = models.TextField(null=True)
+
+    def __str__(self):
+        context={
+            "headline":self.headline,
+            "category":self.category
+        }
+        return context
+
+    class Meta:
+        ordering = ["-id"]

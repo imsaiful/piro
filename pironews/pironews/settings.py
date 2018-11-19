@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'pironews.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# 4pillar and myammaji
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -70,9 +70,7 @@ DATABASES = {
         'USER': 'piro',
         'PASSWORD': 'research123',
         'HOST': 'piro.ceubekalawiz.us-east-2.rds.amazonaws.com',
-
-        #'HOST':'localhost',
-        'PORT': '5432',  # Set to empty string for default.
+        'PORT': '5432',  
     }
 }
 

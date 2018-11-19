@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Republicdb ,Hindustan_db,NDTVdb
+from .models import Republic ,Hindustan,Ndtv
 
-admin.site.register(Republicdb)
-admin.site.register(Hindustan_db)
-admin.site.register(NDTVdb)
+admin.site.register(Republic)
+admin.site.register(Hindustan)
+admin.site.register(Ndtv)
